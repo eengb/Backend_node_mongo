@@ -1,8 +1,8 @@
-import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
-import User from "../models/User.js";
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
+const User = require('../models/user.js')
 
-export const login = async (req, res) => {
+const login = async (req, res) => {
   const { body } = req;
   const user = await User.findOne({ username: body.username });
   const passwordCorrect =
@@ -26,7 +26,7 @@ export const login = async (req, res) => {
   res.status(200).send({ token, username: user.username, name: user.name });
 };
 
-export const create = async (req, res) => {
+const create = async (req, res) => {
   const { body } = req;
 
   if (body.password.length < 3) throw new Error("Invalid password length");
@@ -47,7 +47,9 @@ export const create = async (req, res) => {
   res.send(savedUser);
 };
 
-export const findAll = async (req, res) => {
+const findAll = async (req, res) => {
   const users = await User.find({}).populate("sights");
   res.send(users);
 };
+
+module.exports = create, findAll, login;

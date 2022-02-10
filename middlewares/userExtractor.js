@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+const jwt = require('jsonwebtoken')
 
 const userExtractor = (req, res, next) => {
   const decodedToken = jwt.verify(req.token, process.env.SECRET);
@@ -6,4 +6,4 @@ const userExtractor = (req, res, next) => {
   next();
 };
 
-export default userExtractor;
+module.exports = userExtractor;

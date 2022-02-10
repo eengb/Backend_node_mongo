@@ -2,10 +2,10 @@ const config = require('./utils/config')
 const express = require('express')
 const sightsRouter= require('./controllers/sights')
 
-//fullstackopenin tyylillä
-import tokenExtractor from "./middlewares/tokenExtractor.js";
-import userExtractor from "./middlewares/userExtractor.js";
-import * as Users from "./controllers/users.js";
+//fullstackopenin tyylillä, varmaan turhaa seassa?
+const tokenExtractor = require('./middlewares/tokenExtractor.js')
+const userExtractor = require('./middlewares/userExtractor.js')
+const Users = require('./controllers/users.js')
 
 const middleware = require('./utils/middleware')
 const app = express()
@@ -29,10 +29,10 @@ app.use(tokenExtractor);
 
 app.use('/api/sights',sightsRouter)
 
-
-app.post("/api/login", Users.login);
-app.post("/api/users", Users.create);
-app.get("/api/users", Users.findAll);
+//Ei luonnistu nämä
+//app.post("/api/login", Users.login);
+//app.post("/api/users", Users.create);
+//app.get("/api/users", Users.findAll);
 
 
 

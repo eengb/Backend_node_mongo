@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import uniqueValidator from "mongoose-unique-validator";
+const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator')
 
 //Käyttäjän schema
 //Muista: npm install mongoose-unique-validator
@@ -29,4 +29,4 @@ userSchema.set("toJSON", {
 
 const User = mongoose.model("User", userSchema);
 
-export default User;
+module.exports = User;
