@@ -1,30 +1,22 @@
-const config = require('./utils/config')
-const express = require('express')
-const sightsRouter= require('./controllers/sights')
+import express from "express";
+import sightsRouter from "./controllers/sights.js";
+import usersRouter from "./controllers/users.js";
+import loginRouter from "./controllers/login.js";
+import { unknownEndpoint } from "./utils/middleware.js";
+import { connectToDb } from "./db.js";
+import cors from "cors";
 
-const middleware = require('./utils/middleware')
-const app = express()
-const cors = require('cors')
-const mongoose = require('mongoose')
+const app = express();
+app.use(cors());
+app.use(express.json());
 
+await connectToDb();
 
-console.log('connecting...', )
-mongoose.connect(config.MONGODB_URI)
-  .then(result => {
-    console.log('connected to MongoDB')
-  })
-  .catch((error) => {
-    console.log('error connecting to MongoDB:', error.message)
-  })
+app.use("/mo", (req, res) => res.send("boi")); //testi
+app.use("/api/sights", sightsRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/login", loginRouter);
 
+app.use(unknownEndpoint);
 
-app.use(cors())
-app.use(express.json())
-
-app.use('/api/sights',sightsRouter)
-
-
-app.use(middleware.unknownEndpoint)
-
-
-module.exports = app
+export default app;
