@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 
 //Käyttäjän schema
-//Muista: npm install mongoose-unique-validator
 
 const userSchema = mongoose.Schema({
   sights: [{ type: mongoose.Schema.Types.ObjectId, ref: "sight" }],

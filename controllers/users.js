@@ -1,55 +1,29 @@
-const jwt = require('jsonwebtoken')
-const bcrypt = require('bcryptjs')
-const User = require('../models/user.js')
+const bcryptjs = require('bcryptjs')
+const usersRouter = require('express').Router()
+const User = require('../models/user')
 
-const login = async (req, res) => {
-  const { body } = req;
-  const user = await User.findOne({ username: body.username });
-  const passwordCorrect =
-    user === null
-      ? false
-      : await bcrypt.compare(body.password, user.passwordHash);
+usersRouter.post('/', async (request, response) => {
+  const body = request.body
 
-  if (!(user && passwordCorrect)) {
-    return res.status(401).json({
-      error: "invalid username or password",
-    });
-  }
-
-  const userForToken = {
-    username: user.username,
-    id: user._id,
-  };
-
-  const token = jwt.sign(userForToken, process.env.SECRET);
-
-  res.status(200).send({ token, username: user.username, name: user.name });
-};
-
-const create = async (req, res) => {
-  const { body } = req;
-
-  if (body.password.length < 3) throw new Error("Invalid password length");
-
-  const saltRounds = 10;
-  const passwordHash = await bcrypt.hash(body.password, saltRounds);
+  const saltRounds = 10
+  const passwordHash = await bcryptjs.hash(body.password, saltRounds)
 
   const user = new User({
     username: body.username,
     name: body.name,
     passwordHash,
-  });
+  })
 
-  const savedUser = await user.save();
+  const savedUser = await user.save()
 
-  console.log("user created");
+  response.json(savedUser)
+})
 
-  res.send(savedUser);
-};
+usersRouter.get('/', async (request, response) => {
+  const users = await User
+    .find({}).populate('notes', { content: 1, date: 1 })
+    
+  response.json(users.map(u => u.toJSON()))
+})
 
-const findAll = async (req, res) => {
-  const users = await User.find({}).populate("sights");
-  res.send(users);
-};
-
-module.exports = create, findAll, login;
+module.exports = usersRouter

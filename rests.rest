@@ -13,18 +13,20 @@ POST http://localhost:3002/api/sights
 Content-Type: application/json
 
 {
-"destination":"Nasi",
+"destination":"Neulamäki",
 "country":"Finland",
 "city":"kuopio",
-"description":"very lovely place",
+"description":"Täällä on ihmisen hyvä olla",
 "picture":"wwww.url.fi"
 }
 
 ###
 
 POST http://localhost:3002/api/users
+
 Content-Type: application/json
 {
-    "name":"Testaaja",
+    "username":"Testaaja",
+    "name":"Testi Ucceli",
     "password":"poistaminut"
 }
