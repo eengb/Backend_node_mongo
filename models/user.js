@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 import mongoose from "mongoose";
 import uniqueValidator from "mongoose-unique-validator";
-=======
-const mongoose = require('mongoose')
-const uniqueValidator = require('mongoose-unique-validator')
->>>>>>> 50448b66f0b0f939f3577b34366b39d52d220761
 
 //Käyttäjän schema
 
@@ -21,10 +16,6 @@ const userSchema = mongoose.Schema({
 
 userSchema.plugin(uniqueValidator);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 50448b66f0b0f939f3577b34366b39d52d220761
 userSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
@@ -37,8 +28,4 @@ userSchema.set("toJSON", {
 
 const User = mongoose.model("User", userSchema);
 
-<<<<<<< HEAD
 export default User;
-=======
-module.exports = User;
->>>>>>> 50448b66f0b0f939f3577b34366b39d52d220761
