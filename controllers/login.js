@@ -1,8 +1,9 @@
+import bcrypt from "bcryptjs";
+import { Router } from "express";
+import jwt from "jsonwebtoken";
+import User from "../models/user.js";
 
-const bcrypt = require('bcrypt')
-const loginRouter = require('express').Router()
-const jwt = require('jsonwebtoken')
-const User = require('../models/user')
+const loginRouter = Router();
 
 /** Kirjautumismoduuli */
 
@@ -30,4 +31,4 @@ const token = jwt.sign(userForToken, process.env.SECRET)
     .send({ token, username: user.username, name: user.name })
 })
 
-module.exports = loginRouter
+export default loginRouter;
