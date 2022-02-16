@@ -3,14 +3,14 @@ import uniqueValidator from "mongoose-unique-validator";
 
 //Käyttäjän schema
 
+// prettier-ignore
 const userSchema = mongoose.Schema({
   sights: [{ type: mongoose.Schema.Types.ObjectId, ref: "sight" }],
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  name: String,
+  username: {type: String, required: true, unique: true,},
+  email: {type: String, required: true, unique: true,},
+  firstname: {type: String, required: true,},
+  surname: {type: String, required: true,},
+  imageUrl: String,
   passwordHash: String,
 });
 
