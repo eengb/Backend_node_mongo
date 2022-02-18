@@ -10,6 +10,8 @@ const userSchema = mongoose.Schema({
   email: {type: String, required: true, unique: true,},
   firstname: {type: String, required: true,},
   surname: {type: String, required: true,},
+  locality: String,
+  introduction: String,
   imageUrl: String,
   passwordHash: String,
 });

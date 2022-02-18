@@ -17,6 +17,8 @@ usersRouter.post("/", async (request, response) => {
     firstname: body.firstname,
     surname: body.surname,
     imageUrl: body.imageUrl,
+    locality: body.locality,
+    introduction: body.introduction,
     passwordHash,
   });
 
