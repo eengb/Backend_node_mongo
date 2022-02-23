@@ -8,6 +8,10 @@ const usersRouter = Router();
 usersRouter.post("/", async (request, response) => {
   const body = request.body;
 
+  if (body.email === undefined) {
+    return response.status(400).json({ error: "invalid email" }); // 400 errorit kaikista + check ?
+  }
+
   const saltRounds = 10;
   const passwordHash = await bcrypt.hash(body.password, saltRounds);
 
@@ -46,5 +50,10 @@ usersRouter.get("/", async (request, response) => {
   const users = await User.find({});
   response.send(users);
 });
+
+const getAll = async (req, res) => {
+  const users = await User.find({}).populate("sights");
+  res.send(users);
+};
 
 export default usersRouter;

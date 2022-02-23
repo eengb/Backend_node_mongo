@@ -5,7 +5,7 @@ import uniqueValidator from "mongoose-unique-validator";
 
 // prettier-ignore
 const userSchema = mongoose.Schema({
-  sights: [{ type: mongoose.Schema.Types.ObjectId, ref: "sight" }],
+  sights: [{ type: mongoose.Schema.Types.ObjectId, ref: "Sight" }],
   username: {type: String, required: true, unique: true,},
   email: {type: String, required: true, unique: true,},
   firstname: {type: String, required: true,},
