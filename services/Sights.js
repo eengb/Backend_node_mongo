@@ -16,10 +16,11 @@ export const deleteSight = async (sightId, userId) => {
     const sight = new Sight(data);
 
     //error test
-    if (body.destination === undefined) throw new Error("destination missing");
-    if (body.destination === undefined) throw new Error("country missing");
-    if (body.destination === undefined) throw new Error("description missing");
-    if (body.destination === undefined) throw new Error("picture missing");
+    if (sight.destination === undefined) throw new Error("destination missing 2");
+    if (sight.country === undefined) throw new Error("country missing");
+    if (sight.city === undefined) throw new Error("city missing");
+    if (sight.description === undefined) throw new Error("description missing");
+    if (sight.picture === undefined) throw new Error("picture missing");
 
     const user = await User.findById(userId);
     sight.user = user.id;

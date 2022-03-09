@@ -31,21 +31,6 @@ usersRouter.post("/", async (request, response) => {
   response.send(savedUser);
 });
 
-
-/*  Yritys tehdä logini tänne sisään, käytetään mieluummin login.js
-usersRouter.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-  const user = await User.findOne({ username });
-  const match = await bcrypt.compare(password, user.passwordHash);
-
-  if (!match) return res.send(401);
-
-  const token = jwt.sign(user, process.env.SECRET);
-  res.send(token);
-  
-});
-*/
-
 usersRouter.get("/", async (request, response) => {
   const users = await User.find({});
   response.send(users);
