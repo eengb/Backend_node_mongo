@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 /** Matkakohteen SCHEMA ja muotoilu */
 
 const sightSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   destination: String,
   country: String,
   city: String,

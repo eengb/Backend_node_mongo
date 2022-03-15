@@ -8,6 +8,10 @@ const usersRouter = Router();
 usersRouter.post("/", async (request, response) => {
   const body = request.body;
 
+  if (body.email === undefined) {
+    return response.status(400).json({ error: "invalid email" }); // 400 errorit kaikista + check ?
+  }
+
   const saltRounds = 10;
   const passwordHash = await bcrypt.hash(body.password, saltRounds);
 
@@ -17,6 +21,8 @@ usersRouter.post("/", async (request, response) => {
     firstname: body.firstname,
     surname: body.surname,
     imageUrl: body.imageUrl,
+    locality: body.locality,
+    introduction: body.introduction,
     passwordHash,
   });
 
@@ -25,24 +31,14 @@ usersRouter.post("/", async (request, response) => {
   response.send(savedUser);
 });
 
-
-/*  Yritys tehdä logini tänne sisään, käytetään mieluummin login.js
-usersRouter.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-  const user = await User.findOne({ username });
-  const match = await bcrypt.compare(password, user.passwordHash);
-
-  if (!match) return res.send(401);
-
-  const token = jwt.sign(user, process.env.SECRET);
-  res.send(token);
-  
-});
-*/
-
 usersRouter.get("/", async (request, response) => {
   const users = await User.find({});
   response.send(users);
 });
+
+const getAll = async (req, res) => {
+  const users = await User.find({}).populate("sights");
+  res.send(users);
+};
 
 export default usersRouter;
