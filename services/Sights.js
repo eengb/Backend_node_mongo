@@ -2,9 +2,8 @@ import Sight from "../models/sight.js";
 import User from "../models/user.js";
 
 export const deleteSight = async (sightId, userId) => {
-    const sight = await Sight.findById({ _id: sightId });
-    if (userId !== sight.user.toString()) throw new Error("Not Authorized");
-    await Sight.deleteOne({ _id: sightId });
+    const sight = await Sight.deleteOne({ _id: sightId, user:userId});
+    return sight
   };
   
   export const findSights = async () => {
@@ -16,7 +15,7 @@ export const deleteSight = async (sightId, userId) => {
     const sight = new Sight(data);
 
     //error test
-    if (sight.destination === undefined) throw new Error("destination missing 2");
+    if (sight.destination === undefined) throw new Error("destination missing");
     if (sight.country === undefined) throw new Error("country missing");
     if (sight.city === undefined) throw new Error("city missing");
     if (sight.description === undefined) throw new Error("description missing");

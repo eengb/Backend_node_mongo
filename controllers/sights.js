@@ -2,7 +2,7 @@ import { Router } from "express";
 import Sight from "../models/sight.js";
 import jwt from "jsonwebtoken";
 import User from "../models/user.js";
-import {addSight} from "../services/Sights.js"
+import {deleteSight, updateSight} from "../services/Sights.js"
 
 const sightsRouter = Router();
 
@@ -10,6 +10,11 @@ const sightsRouter = Router();
 sightsRouter.get("/", async (request, response) => {
   const sights = await Sight.find({}).populate("user") //asd?
   return response.json(sights);
+});
+
+sightsRouter.delete("/:id", async (request, response) => {
+  const sight = await deleteSight(request.params.id, request.userId)
+  return response.json(sight);
 });
 
 sightsRouter.post("/", async (request, response) => {
