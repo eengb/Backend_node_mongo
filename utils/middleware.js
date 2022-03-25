@@ -5,9 +5,12 @@ export const unknownEndpoint = (request, response) => {
 };
 
 export const tokenExtractor = (request, response, next) => {
+  console.log("Token extractor toimii")
   if (!request.headers.authorization){
-    next();
+    console.log("Headeri tyhjä, seuraavaksi next?")
+    return next();
   }
+  console.log("Headerissa jotain, käsitellään tokeni")
   const token = request.headers.authorization.split(" ").pop()
   request.userId = jwt.verify(token, process.env.SECRET).id;
   next();
