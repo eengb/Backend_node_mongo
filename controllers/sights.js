@@ -3,6 +3,9 @@ import Sight from "../models/sight.js";
 import jwt from "jsonwebtoken";
 import User from "../models/user.js";
 import {deleteSight, updateSight} from "../services/Sights.js"
+import mongoose from "mongoose";
+import { request } from "express";
+import { response } from "express";
 
 const sightsRouter = Router();
 
@@ -14,6 +17,13 @@ sightsRouter.get("/", async (request, response) => {
 
 sightsRouter.delete("/:id", async (request, response) => {
   const sight = await deleteSight(request.params.id, request.userId)
+  return response.json(sight);
+});
+
+sightsRouter.put("/:id", async (request, response) => {
+  console.log("userid: " + request.userId)
+  console.log("sightid: " + request.params.id)
+  const sight = await updateSight(request.params.id, request.userId, request.body)
   return response.json(sight);
 });
 

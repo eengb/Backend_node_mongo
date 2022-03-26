@@ -13,7 +13,7 @@ POST http://localhost:3002/api/sights
 Content-Type: application/json
 
 {
-"destination":"Neulamäki",
+"destination":"Testimäki",
 "country":"Finland",
 "city":"kuopio",
 "description":"Täällä on ihmisen hyvä olla",
@@ -22,23 +22,10 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3002/api/users
-Content-Type: application/json
-
-{
-"email":"testi.testi@testiposti.fi",
-"firstname":"Hermanni",
-"surname":"Testaaja",
-"username":"testiucco1",
-"password":"testaaja"
-}
-
-###
-
 POST http://localhost:3002/api/login
 Content-Type: application/json
 
 {
-"email":"testi.testi@testiposti.fi",
-"password": "testaaja"
+"email":"testaaja@posti.fi",
+"password": "Test"
 }
