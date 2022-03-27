@@ -9,6 +9,7 @@ const sightSchema = new mongoose.Schema({
   city: String,
   description: String,
   picture: String,
+  date: Date,
 });
 
 sightSchema.set("toJSON", {

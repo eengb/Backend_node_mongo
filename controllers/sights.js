@@ -39,7 +39,8 @@ sightsRouter.post("/", async (request, response) => {
     city: body.city,
     description: body.description,
     picture: body.picture, 
-    user: id.id
+    user: id.id,
+    date: new Date()
   });
 
   const savedSight = await sight.save();

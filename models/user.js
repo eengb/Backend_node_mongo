@@ -14,6 +14,7 @@ const userSchema = mongoose.Schema({
   introduction: String,
   imageUrl: String,
   passwordHash: String,
+  date: Date,
 });
 
 userSchema.plugin(uniqueValidator);
