@@ -1,18 +1,17 @@
 import mongoose from "mongoose";
 
-/** Matkakohteen SCHEMA ja muotoilu */
 
-const sightSchema = new mongoose.Schema({
+/** Käyttäjä tarinan SCHEMA ja muotoilu */
+
+const storySchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  destination: String,
-  country: String,
-  city: String,
+  sight: { type: mongoose.Schema.Types.ObjectId, ref: "Sight" },
   description: String,
   picture: String,
   date: Date,
 });
 
-sightSchema.set("toJSON", {
+storySchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;
@@ -20,6 +19,6 @@ sightSchema.set("toJSON", {
   },
 });
 
-const Sight = mongoose.model("Sight", sightSchema);
+const Story = mongoose.model("Story", storySchema);
 
-export default Sight;
+export default Story;
