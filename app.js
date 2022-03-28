@@ -17,7 +17,7 @@ await connectToDb();
 app.use(tokenExtractor);
 app.use("/mo", (req, res) => res.send("boi")); //testi
 app.use("/api/sights", sightsRouter);
-app.use("/api/story", storiesRouter);
+app.use("/api/stories", storiesRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/login", loginRouter);
 
