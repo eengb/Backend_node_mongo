@@ -1,8 +1,7 @@
 import { Router } from "express";
-import Sight from "../models/sight.js";
 import jwt from "jsonwebtoken";
 import User from "../models/user.js";
-import Sight from "../models/sight.js";
+import Story from "../models/story.js";
 import {deleteStory, updateStory} from "../services/Stories.js"
 
 
