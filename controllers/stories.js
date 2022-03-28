@@ -9,7 +9,7 @@ const storiesRouter = Router();
 
 /** Matkakohteen CRUD operaatiot */
 storiesRouter.get("/", async (request, response) => {
-  const story = await Story.find({}).populate("story") //asd?
+  const story = await Story.find({}).populate("user") //asd?
   return response.json(story);
 });
 
