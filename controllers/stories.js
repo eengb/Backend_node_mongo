@@ -1,8 +1,7 @@
 import { Router } from "express";
-import Sight from "../models/sight.js";
 import jwt from "jsonwebtoken";
 import User from "../models/user.js";
-import Sight from "../models/sight.js";
+import Story from "../models/story.js";
 import {deleteStory, updateStory} from "../services/Stories.js"
 
 
@@ -10,7 +9,7 @@ const storiesRouter = Router();
 
 /** Matkakohteen CRUD operaatiot */
 storiesRouter.get("/", async (request, response) => {
-  const story = await Story.find({}).populate("story") //asd?
+  const story = await Story.find({}).populate("user") //asd?
   return response.json(story);
 });
 
