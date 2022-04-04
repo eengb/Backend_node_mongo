@@ -9,6 +9,7 @@ const storySchema = new mongoose.Schema({
   description: String,
   picture: String,
   date: Date,
+  private: Boolean
 });
 
 storySchema.set("toJSON", {
