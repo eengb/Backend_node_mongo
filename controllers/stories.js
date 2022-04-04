@@ -48,7 +48,8 @@ storiesRouter.post("/", async (request, response) => {
     picture: body.picture, 
     user: id.id,
     sight: body.sightId,
-    date: new Date()
+    date: new Date(),
+    private: false
   });
 
   const savedStory = await story.save();
