@@ -28,7 +28,7 @@ const token = jwt.sign(userForToken, process.env.SECRET)
 
   response
     .status(200)
-    .send({ token, email: user.email, firstname: user.firstname, surname: user.surname, locality: user.locality, username:user.username, introduction: user.introduction, imageUrl: user.imageUrl, sights: user.sights})
+    .send({ token, email: user.email, firstname: user.firstname, surname: user.surname, locality: user.locality, username:user.username, introduction: user.introduction, imageUrl: user.imageUrl, sights: user.sights, id: user.id})
 })
 
 export default loginRouter;
