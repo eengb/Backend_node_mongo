@@ -49,7 +49,7 @@ storiesRouter.post("/", async (request, response) => {
     user: id.id,
     sight: body.sightId,
     date: new Date(),
-    private: false
+    private: body.private
   });
 
   const savedStory = await story.save();
