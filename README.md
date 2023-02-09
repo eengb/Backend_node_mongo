@@ -1,3 +1,8 @@
+
+Backend for Full Stack App, CS group project, Software Engineering 2
+
+****
+
 npm install express daemon cors dotenv mongoose \
 npm install mongoose-unique-validator bcryptjs jsonwebtoken \
 
